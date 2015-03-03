@@ -1,5 +1,6 @@
 /var
 /vendor
-config/config.php
+/config/config.php
 composer.lock
 *.log
+
