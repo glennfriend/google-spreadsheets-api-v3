@@ -6,6 +6,11 @@
 - CLIENT_EMAIL
 - p12 key
 
+### Request
+```
+PHP 5.5
+```
+
 ### Installation
 ```sh
 $ composer.phar install
