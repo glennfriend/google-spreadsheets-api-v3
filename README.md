@@ -12,5 +12,6 @@
 
 ### Installation
 ```sh
+$ composer.phar self-update
 $ composer.phar install
 ```
