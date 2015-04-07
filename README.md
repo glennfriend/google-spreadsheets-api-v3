@@ -7,9 +7,8 @@
 - p12 key
 
 ### Request
-```
-PHP 5.5
-```
+- PHP 5.5
+- google sheet 共用給使用者 CLIENT_EMAIL
 
 ### Installation
 ```sh
