@@ -13,17 +13,17 @@ error_reporting(E_ALL);
 ini_set('html_errors','On');
 ini_set('display_errors','On');
 
-require_once 'config/config.php';
+require_once '../app/config/config.php';
 date_default_timezone_set(APPLICATION_TIMEZONE);
 
 require_once 'vendor/autoload.php';
-require_once 'library/Log.php';
-require_once 'library/CsvManager.php';
-require_once 'library/ArrayIndex.php';
-require_once 'library/GoogleWorksheetManager.php';
-require_once 'helper/GoogleApiHelper.php';
-require_once 'helper/GoogleSheetdownloadHelper.php';
-require_once 'helper/MailHelper.php';
+require_once '../app/library/Log.php';
+require_once '../app/library/CsvManager.php';
+require_once '../app/library/ArrayIndex.php';
+require_once '../app/library/GoogleWorksheetManager.php';
+require_once '../app/helper/GoogleApiHelper.php';
+require_once '../app/helper/GoogleSheetdownloadHelper.php';
+require_once '../app/helper/MailHelper.php';
 
 perform();
 exit;
