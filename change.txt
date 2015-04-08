@@ -1,0 +1,12 @@
+==== 1.0.0.0 ====
+Major Highlights
+    + 可讀取一頁 google sheet
+    + 可寫入一頁 google sheet
+Improvements
+    + 可在 command line 執行
+    + 可在 web page 執行
+Changes
+    + 必須在 PHP 5.5+ 執行
+    - 必須在 PHP 5.4+ 執行
+Fixes
+
