@@ -5,6 +5,7 @@
 - CLIENT_ID
 - CLIENT_EMAIL
 - p12 key
+
 建立 google sheet 並且共用給使用者 CLIENT_EMAIL
 
 ### Environment
