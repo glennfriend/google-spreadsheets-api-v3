@@ -2,7 +2,7 @@
 #!/usr/bin/php -q
 
 if (PHP_SAPI !== 'cli') {
-    if ( '192.168.' !== substr($_SERVER['REMOTE_ADDR'],0,8)  )
+    if ( '192.168.' !== substr($_SERVER['REMOTE_ADDR'],0,8) )
     {
         exit;
     }
@@ -13,13 +13,13 @@ error_reporting(E_ALL);
 ini_set('html_errors','On');
 ini_set('display_errors','On');
 
-require_once 'app/config/config.php';
+require_once '../app/config/config.php';
 date_default_timezone_set(APPLICATION_TIMEZONE);
 
-require_once 'vendor/autoload.php';
-require_once 'app/library/Log.php';
-require_once 'app/library/GoogleWorksheetManager.php';
-require_once 'app/helper/GoogleApiHelper.php';
+require_once '../vendor/autoload.php';
+require_once '../app/library/Log.php';
+require_once '../app/library/GoogleWorksheetManager.php';
+require_once '../app/helper/GoogleApiHelper.php';
 
 
 perform();
