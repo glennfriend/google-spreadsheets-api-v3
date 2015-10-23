@@ -1,5 +1,3 @@
 /var
-/vendor
 /app/config/config.php
-composer.lock
 *.log
