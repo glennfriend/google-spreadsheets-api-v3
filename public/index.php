@@ -31,12 +31,12 @@ function perform()
         show("PHP Version need >= 5.5");
         exit;
     }
-    Log::record(' - start PHP '. phpversion() );
+    Log::record('start PHP '. phpversion() );
 
     //
     upgradeGoogleSheet();
 
-    Log::record(' - Done');
+    Log::record('Done');
     show("done");
 }
 
@@ -62,7 +62,7 @@ function upgradeGoogleSheet()
     $count = $sheet->getCount();
     for ( $i=0; $i<$count; $i++ ) {
         $row = $sheet->getRow($i);
-        print_r($row);
+        pr($row);
         // $sheet->setRow($i, $row);
 
         // debug
