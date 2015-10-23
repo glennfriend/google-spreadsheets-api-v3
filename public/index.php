@@ -9,17 +9,16 @@ if (PHP_SAPI !== 'cli') {
     echo "<pre>\n";
 }
 
-error_reporting(E_ALL);
-ini_set('html_errors','On');
-ini_set('display_errors','On');
+$basePath = dirname(__DIR__);
+require_once $basePath . '/app/bootstrap.php';
+initialize($basePath);
 
-require_once '../app/config/config.php';
-date_default_timezone_set(APPLICATION_TIMEZONE);
 
-require_once '../vendor/autoload.php';
-require_once '../app/library/Log.php';
-require_once '../app/library/GoogleWorksheetManager.php';
-require_once '../app/helper/GoogleApiHelper.php';
+require_once basePath() . '/app/library/GoogleWorksheetManager.php';
+require_once basePath() . '/app/helper/GoogleApiHelper.php';
+exit;
+
+
 
 
 perform();
@@ -54,7 +53,7 @@ function upgradeGoogleSheet()
         die('token error!');
     }
 
-    $worksheet = GoogleApiHelper::getWorksheet( APPLICATION_GOOGLE_SPREADSHEETS_BOOK, APPLICATION_GOOGLE_SPREADSHEETS_SHEET, $token );
+    $worksheet = GoogleApiHelper::getWorksheet( conf('google.spreadsheets.book'), conf('google.spreadsheets.sheet') , $token );
     if ( !$worksheet ) {
         die('worksheet not found!');
     }
