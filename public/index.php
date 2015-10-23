@@ -13,10 +13,8 @@ $basePath = dirname(__DIR__);
 require_once $basePath . '/app/bootstrap.php';
 initialize($basePath);
 
-
-require_once basePath() . '/app/library/GoogleWorksheetManager.php';
-require_once basePath() . '/app/helper/GoogleApiHelper.php';
-exit;
+require_once $basePath . '/app/library/GoogleWorksheetManager.php';
+require_once $basePath . '/app/helper/GoogleApiHelper.php';
 
 
 
@@ -30,8 +28,7 @@ exit;
 function perform()
 {
     if ( phpversion() < '5.5' ) {
-        echo "PHP Version need >= 5.5";
-        echo "\n";
+        show("PHP Version need >= 5.5");
         exit;
     }
     Log::record(' - start PHP '. phpversion() );
@@ -40,7 +37,7 @@ function perform()
     upgradeGoogleSheet();
 
     Log::record(' - Done');
-    echo "done\n";
+    show("done");
 }
 
 /**
@@ -50,12 +47,14 @@ function upgradeGoogleSheet()
 {
     $token = GoogleApiHelper::getToken();
     if ( !$token ) {
-        die('token error!');
+        show('token error!');
+        exit;
     }
 
     $worksheet = GoogleApiHelper::getWorksheet( conf('google.spreadsheets.book'), conf('google.spreadsheets.sheet') , $token );
     if ( !$worksheet ) {
-        die('worksheet not found!');
+        show('worksheet not found!');
+        exit;
     }
 
     $sheet = new GoogleWorksheetManager($worksheet);
@@ -67,7 +66,7 @@ function upgradeGoogleSheet()
         // $sheet->setRow($i, $row);
 
         // debug
-        echo $i. ' ';
+        show( $i . ' ' );
         if (PHP_SAPI !== 'cli') {
             ob_flush(); flush();
         }

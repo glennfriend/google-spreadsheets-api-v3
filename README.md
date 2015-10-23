@@ -16,8 +16,8 @@
 ```sh
 $ composer.phar self-update
 $ composer.phar install
-$ cp app/config/config_template.php app/config/config.php
-$ vi app/config/config.php
+$ cp app/config/template/* app/config/
+$ vi app/config/*.php
 ```
 
 ### Execute

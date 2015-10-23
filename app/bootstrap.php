@@ -34,3 +34,9 @@ function pr($data)
 {
     print_r($data);
 }
+
+function show($data)
+{
+    echo $data;
+    echo "\n";
+}

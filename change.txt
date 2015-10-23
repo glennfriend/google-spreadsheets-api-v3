@@ -1,4 +1,8 @@
-==== 1.0.0.0 ====
+==== 1.1.0 ====
+Improvements
+    + 昇級 config
+
+==== 1.0.0 ====
 Major Highlights
     + 可讀取一頁 google sheet
     + 可寫入一頁 google sheet
