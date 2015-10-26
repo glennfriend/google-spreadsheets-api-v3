@@ -40,8 +40,7 @@ function perform()
     Log::record('start PHP '. phpversion() );
     upgradeGoogleSheet();
 
-    Log::record('Done');
-    show("done");
+    show("done", true);
 }
 
 /**
@@ -50,14 +49,14 @@ function perform()
 function upgradeGoogleSheet()
 {
     $token = GoogleApiHelper::getToken();
-    if ( !$token ) {
-        show('token error!');
+    if (!$token) {
+        show('token error!', true);
         exit;
     }
 
     $worksheet = GoogleApiHelper::getWorksheet( conf('google.spreadsheets.book'), conf('google.spreadsheets.sheet') , $token );
-    if ( !$worksheet ) {
-        show('worksheet not found!');
+    if (!$worksheet) {
+        show('worksheet not found!', true);
         exit;
     }
 
@@ -65,22 +64,38 @@ function upgradeGoogleSheet()
     $header = $sheet->getHeader();
     $count = $sheet->getCount();
     for ( $i=0; $i<$count; $i++ ) {
-        $row = $sheet->getRow($i);
 
-        // 無論如何都必須修改的值
+        $row = $sheet->getRow($i);
         $row = filterUnusedCode($row);
         show($row);
 
+        // update sheet row
         if (getParam('exec')) {
-            writeSheet($row);
+            // 如果內容完全相同, 就不需要更新
+            // 為了達到該效果, int 需要轉化為 string
+            $originRow = $sheet->getRow($i);
+
+            if ( md5(serialize($originRow)) === md5(serialize($row)) ) {
+                echo "({$i}-same) ";
+            }
+            else {
+                $result = writeSheet($row, $sheet, $i);
+                if ($result) {
+                    echo "{$i} ";
+                }
+                else {
+                    echo "({$i}-udpate-fail) ";
+                }
+            }
         }
 
-        // debug
-        show( $i . ' ' );
-        if (PHP_SAPI !== 'cli') {
+        // show message
+        if (!isCli()) {
             ob_flush(); flush();
         }
     }
+
+    show('');
 }
 
 /**
@@ -97,8 +112,7 @@ function writeSheet($row)
         $sheet->setRow($i, $row);
     }
     catch ( Exception $e) {
-        Log::record( $e->getMessage() );
-        show($e->getMessage());
+        show($e->getMessage(), true);
         exit;
     }
 }
