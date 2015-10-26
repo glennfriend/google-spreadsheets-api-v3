@@ -29,7 +29,7 @@ function conf($key)
     return Config::get($key);
 }
 
-function show($data)
+function show($data, $writeLog=false )
 {
     if (is_object($data) || is_array($data)) {
         print_r($data);
@@ -38,17 +38,19 @@ function show($data)
         echo $data;
         echo "\n";
     }
-}
 
-function isCli()
-{
-    return PHP_SAPI === 'cli';
+    if ($writeLog) {
+        Log::record($data);
+    }
+
 }
 
 /**
  *  get command line param or get web param
  *  
  *  @dependency isCli()
+ *  @dependency getWebParam()
+ *  @dependency getCliParam()
  */
 function getParam($key)
 {
@@ -101,3 +103,7 @@ function getCliParam($key)
     return null;
 }
 
+function isCli()
+{
+    return PHP_SAPI === 'cli';
+}
