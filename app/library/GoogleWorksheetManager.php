@@ -1,5 +1,4 @@
 <?php
-
 use Google\Spreadsheet\DefaultServiceRequest;
 use Google\Spreadsheet\ServiceRequestFactory;
 
